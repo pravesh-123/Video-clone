@@ -1,0 +1,135 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    background-image: url("../imgs/home-bg.jpg");
+    background-size: cover;
+    background-position: right;
+    background-repeat:no-repeat;
+    font-family: "Segoe UI", "Segoe UI Web (West European)", "Segoe UI", -apple-system, BlinkMacSystemFont, Roboto, "Helvetica Neue", sans-serif;
+}
+
+h1, h2, h3{
+    color: #0c132f;
+    cursor: default;
+}
+
+p, label, i{
+    font-weight: 500;
+    color: #747474;
+    font-size: 17px;
+}
+
+input{
+    margin: 10px 0 15px;
+    outline: 0;
+    border: none;
+    height: 20px;
+    width: 300px;
+    border-bottom: 2px solid #747474;
+    font-size: inherit;
+    background-color: transparent;
+}
+
+.main-top{
+    margin-left: 3%;
+    display: flex;
+    align-items: center;
+}
+
+.main-top img{
+    height: 40px;
+    margin-right: 5px;
+}
+
+.main-left{
+    width: 500px;
+    margin: 7% 0 0 4%;
+    line-height: 1.5;
+}
+
+.container{
+    width: 100%;
+    overflow: hidden;
+}
+
+.main-left-outer{
+    display: flex;
+    width: 400%;
+}
+
+.join{
+    opacity: 0;
+}
+
+.main-left-outer div{
+    width:25%;
+    margin-left:0;
+    transition: margin-left 0.3s ease-in-out;
+}
+
+.intro p{
+    padding-right: 40px;
+}
+
+.required, .required-msg{
+    color: #ff0d0dd9;
+    font-style: italic;
+    font-size: 15px;
+}
+
+/* Button styling */
+.main-left-btn {
+    font-size: 1em;
+    background: #0c132f;
+    color: #fff;
+    padding: 15px 18px;
+    border-radius: 22px;
+    border: none;
+    margin-top: 7%;
+    font-weight: 600;
+    cursor: pointer;
+    letter-spacing: 1px;
+    transition: 0.5s ease;
+}
+
+.main-left-btn:hover {
+    background: #eaefff;
+    color: #0c132f; 
+}
+
+.main-bottom{
+    position: absolute;
+    bottom: 0;
+    margin-left: 2%;
+}
+
+.main-bottom a{
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+
+.main-bottom i{
+    margin-right: 5px;
+}
+
+.back{
+    cursor: pointer;
+}
+
+@media  (max-width: 980px) {
+    .main-left{
+        background-color: #ffffffd9;
+        text-align: center;
+        width: 60%;
+        padding: 3%;
+        position: relative;
+        left: 12%;
+    }
+    .intro p, label{
+        padding: 0;
+        color: #3b3a3a;
+    }
+}
+

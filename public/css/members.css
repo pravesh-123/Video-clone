@@ -1,0 +1,95 @@
+/* Participants section of meeting*/
+
+.members{
+    color: #0f0f0f;
+    height: 100%;
+    position: relative;
+}
+
+.members-header{
+    padding: 5px 10px 10px;
+    box-shadow: 0px 4px 5px #8f8d8d;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.members-content{
+    margin-top: 10px;
+    padding: 0 21px;
+    overflow-y: auto;
+    max-height: 76%;
+}
+
+.people{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.invite{
+    position: absolute;
+    bottom: 0;
+    width: -webkit-fill-available;
+    padding: 13px 7px;
+}
+
+.invite-btn, .copy{
+    background-color: #f8f8f8;
+    padding: 10px 20px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;  
+    border: none;
+    width: -webkit-fill-available;
+}
+
+.invite-btn:hover{
+    box-shadow: 0px 3px 5px #8f8d8d;
+}
+
+.invite-box{
+    display: none;
+    position: fixed; 
+    z-index: 1; 
+    left: 0;
+    top: 0;
+    width: 100%; 
+    height: 100%; 
+    overflow: auto; 
+    background-color: rgb(0,0,0); /*if not supported8*/
+    background-color: rgba(0,0,0,0.6); 
+}
+
+.invite-content{
+    background-color: #080808;
+    margin: 12% auto;
+    padding: 20px;
+    width: 30%; 
+    color: #ffffff;
+}
+
+.invite-text{
+    resize: none;
+    border: none;
+    color: #fff;
+    padding: 8px;
+    background-color: #292929;
+    font-family: inherit;
+    margin-bottom: 25px;
+    width: -webkit-fill-available;
+    font-size: inherit;
+    overflow: hidden;
+}
+
+.invite-text:focus-visible{
+    outline: none;
+}
+
+.close{
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}

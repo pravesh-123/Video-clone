@@ -1,20 +1,19 @@
 const socket= io("/");        //importing socket.io
 const myVideo= document.createElement("video");     //to create an HTML video element
-
 const videoBox= $("#video-box");
-
 const rightPane= $(".right-pane");
 var myPeer = new Peer(undefined, {    //id created automatically by peer so undefined
     path: "/peerjs",
-    host: "/",      //whichever host we're hosting it on
+    host: "/",      //host we're hosting peer on
     port: "443"    //peer server runs on port 443
 });      
 const peers = {}, allPeers = [];
-
+var myUserId = "";
+var myVideoStream ,myScreenStream;
 
 rightPane.hide();
 $(".left-pane").css("flex", "1");
-var myUserId = "";
+
 
 //getting usernames and meet titles of users from local storage
 var userName = localStorage.getItem("userName"); 
@@ -24,22 +23,17 @@ var meetTitle = localStorage.getItem("createMeetTitle");
 myVideo.muted= true;    //to mute my own video for me
 
 //get video and audio output from chrome
-var myVideoStream ,myScreenStream;
-
 navigator.mediaDevices.getUserMedia({
     video: true,
     audio: true
 }).then(stream =>{      //if access to video and audio is given, then stream
     myVideoStream = stream;
     addVideo(myVideo, stream, "my-video", "You");      //function call to addVideo 
-    // $("video").last().addClass("my-video");
-    // addNameToVideo("You");
     addMeetingTitle();
     var connectedUsersId;
     myPeer.on('connection', function(conn) {
         conn.on('data', function(id, name){
             connectedUsersId= id;
-            // addNameToVideo(name);
         });
     });
 
@@ -49,7 +43,6 @@ navigator.mediaDevices.getUserMedia({
         call.on("stream", userVideoStream =>{       //add video stream from user
                 addVideo(video, userVideoStream, connectedUsersId); 
         }) 
-        // addNameToVideo(username);
 
         allPeers.push(call.peerConnection);
     })
@@ -59,11 +52,7 @@ navigator.mediaDevices.getUserMedia({
         $(".people").append(`<li class="ppl ${data.userId}">${data.username}<hr></li>`);   //append name to member list
         setTimeout(() => {
             connectToUser(data.userId, stream, data.username);    //user joined now, passing our stream 
-            // addNameToVideo(data.username);
-            // addNameToVideo(data.username);
         }, 1000)   
-        // setTimeout(() => { 
-        // addNameToVideo(data.username);}, 1000)
         $(".messages").append(`<li class="connect"><i>${data.username} has joined.</i></li>`);  
         
     })
@@ -76,7 +65,6 @@ navigator.mediaDevices.getUserMedia({
     });
 
     socket.on("createMessage", (data) =>{   //when server sends back the message
-        // msg= cleanInput(data.msg);  //prevent markup from being injected into the message
         $(".messages").append(`<li class="msg"><b>${data.username}</b><br/><span>${data.msg}</span></li>`);   //append msg to the chatbox
         scrollBottom();
     })
@@ -108,10 +96,7 @@ const connectToUser= (userId, stream, username) =>{     //calls this function fo
     const video=  document.createElement("video")
     call.on("stream", userVideoStream =>{       //call on the user video stream
         addVideo(video, userVideoStream, userId)        //when new stream is received, the video is added
-        // addNameToVideo(username);
     })
-   
-    // addNameToVideo(username);
 
     call.on("close", () =>{
         video.remove();
@@ -126,8 +111,6 @@ const addNameToVideo= (name) =>{
     uname.classList.add(name);
     uname.append(document.createTextNode(name));
     $("#video-box > div").last().append(uname);
-    // $("p").addClass("name");
-    // uname.text(name);
 }
 
 //add video to page
@@ -137,7 +120,6 @@ const addVideo = (video, stream, id, name) =>{
         video.play();       //play the video
     })
     let div= document.createElement("div");
-    // div.attr("class", id);
     videoBox.append(div);     //add our video inside the div with id= video-box 
     let newDiv= $("#video-box > div").last();
     newDiv.attr("class", id);
@@ -145,7 +127,6 @@ const addVideo = (video, stream, id, name) =>{
     if(name){
         addNameToVideo(name);
     }
-    
 
     audioVideoSettings();
 }
@@ -263,19 +244,16 @@ const shareScreen= () =>{
           audio: false
     }).then(stream =>{ 
         myScreenStream= stream;
-
         let streamTrack= stream.getVideoTracks()[0];
        
         $(".screen-button").html(`<i class="far fa-window-close"></i>`);
         $(".screen-button").attr("onclick", "stopShare()");
        
-        for (let x=0; x< allPeers.length; x++){
-           
+        for (let x=0; x< allPeers.length; x++){        
             let sender= allPeers[x].getSenders().find(function(s){
                return s.track.kind == streamTrack.kind;
-             })
-             
-             sender.replaceTrack(streamTrack);
+            })           
+            sender.replaceTrack(streamTrack);
         }
 
         streamTrack.onended = function () {  //when user clicks on 'Stop Sharing' button on browser
@@ -301,23 +279,9 @@ const stopShare= () =>{
     $(".screen-button").attr("onclick", "shareScreen()");
 }
 
-//add users screen stream to the page
-const addScreen= (screen, stream) =>{
-    screen.srcObject = stream;
-    screen.addEventListener("loadedmetadata", () =>{
-        screen.play();       //show screen
-    })
-    
-    screenBox.show();
-    screenBox.append(screen);
-}
-
 
 //show and hide chat and people pane
 const showMembers= () =>{
-
-    // socket.emit("bring-users");
-
     rightPane.show();
     $(".left-pane").css("flex", "0.75");
     $(".chat").hide();

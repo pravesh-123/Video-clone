@@ -59,9 +59,5 @@ io.on("connection", socket =>{        //when user has made a connection
 
 
 
-
-
-
-
 //start the server
 server.listen(process.env.PORT || 3002);

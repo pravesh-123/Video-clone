@@ -18,9 +18,4 @@ router.get('/:room', (req, res) =>{
 })
 
 
-// router.get('*', (req, res) =>{      // Handling non-existing routes
-//     res.render('error');
-// })
-
-
 module.exports = router;

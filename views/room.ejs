@@ -5,18 +5,15 @@
 <link rel="stylesheet" href="css/chat.css">
 <link rel="stylesheet" href="css/members.css">
 
+<!-- Emoji Picker  -->
 <script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
-<!-- Internal Javascript -->
-<script>
-    const room_id= "%= roomId %>";
-</script>
+
 </head>
 
 <body>
 <!--Meeting controls-->
 <div class="controls">
     <div class="left-controls">
-        <!--Meeting Time + Title-->
         <h4 class="meet-title"></h4>
     </div>
     <div class="right-controls">
@@ -68,7 +65,6 @@
             </div>
             <div class="chat-input">
                 <i onclick="showEmojis()" class="far fa-smile add-emoji" title="Add emojis"></i>
-                <!-- send image, file, download chat  -->
                 <input class="new-msg" type="text" placeholder="Type a new message"> 
                 <i onclick="sendMessage()" class="far fa-paper-plane" title="Send"></i>
             </div>

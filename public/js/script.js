@@ -5,9 +5,9 @@ const videoBox= $("#video-box");
 
 const rightPane= $(".right-pane");
 var myPeer = new Peer(undefined, {    //id created automatically by peer so undefined
-    // path: "/peerjs",
-    host: "/",   //whichever host we're hosting it on
-    port: "3001"    //peer server runs on port 3001 //443
+    path: "/peerjs",
+    host: "/",      //whichever host we're hosting it on
+    port: "443"    //peer server runs on port 443
 });      
 const peers = {}, allPeers = [];
 

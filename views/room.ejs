@@ -1,0 +1,112 @@
+<%- include ("layouts/header") -%>
+
+<!-- CSS Stylesheets-->
+<link rel="stylesheet" href="css/room.css">
+<link rel="stylesheet" href="css/chat.css">
+<link rel="stylesheet" href="css/members.css">
+
+<script type="module" src="https://cdn.jsdelivr.net/npm/emoji-picker-element@^1/index.js"></script>
+<!-- Internal Javascript -->
+<script>
+    const room_id= "%= roomId %>";
+</script>
+</head>
+
+<body>
+<!--Meeting controls-->
+<div class="controls">
+    <div class="left-controls">
+        <!--Meeting Time + Title-->
+        <h4 class="meet-title"></h4>
+    </div>
+    <div class="right-controls">
+        <div onclick="muteUnmute()" class="control-buttons mic-button" title="Turn microphone on/off">
+            <i class="fas fa-microphone"></i>
+        </div>
+        <div onclick="playStop()" class="control-buttons video-button" title="Switch video on/off">
+            <i class="fas fa-video"></i>
+        </div>
+        <div onclick="shareScreen()" class="control-buttons screen-button" title="Share screen">
+            <i class="fas fa-desktop"></i>
+        </div>
+        <div onclick="showMembers()" class="control-buttons" title="Participants">
+            <i class="fas fa-users"></i>
+        </div>
+        <div onclick="showChat()" class="control-buttons" title="Chat">
+            <i class="fas fa-comments"></i>
+        </div>
+        <div class="control-buttons">
+            <a href="/">
+                <button class="leave-meeting" type="button" title="Leave meeting"><i class="fas fa-phone-slash"></i>    Leave</button>
+            </a>
+        </div>
+    </div>
+</div>
+
+<div class="main">
+    <div class="left-pane">
+        <div class="main-videos" id="video-box">
+                <!--Video elements get added here-->
+        </div>  
+    </div>
+
+    <div class="right-pane">
+        <!--Chat-->
+        <div class="chat">
+            <div class="chat-header">
+                <h4>Meeting Chat</h4>
+                <div class="hide">
+                    <i class="fas fa-times" title="Close"></i>
+                </div>
+            </div>
+            <div class="chat-content">
+                <ul class="messages">
+                    <!-- <li class="connect"><i>User ${userId} has joined.</i></li> -->
+                    <!-- <li class="msg"><b>User</b><br/><span>${msg}</span></li> -->
+                    <!-- <li class="disconnect"><i>User ${userId} has left the meeting.</i></li> -->  
+                </ul>
+            </div>
+            <div class="chat-input">
+                <i onclick="showEmojis()" class="far fa-smile add-emoji" title="Add emojis"></i>
+                <!-- send image, file, download chat  -->
+                <input class="new-msg" type="text" placeholder="Type a new message"> 
+                <i onclick="sendMessage()" class="far fa-paper-plane" title="Send"></i>
+            </div>
+        </div>
+        <!--Members-->
+        <div class="members">
+            <div class="members-header">
+                <h4>People</h4>
+                <div class="hide">
+                    <i class="fas fa-times" title="Close"></i>
+                </div>
+            </div>
+            <div class="members-content">
+                <ul class="people">
+                    <!--  <li class="ppl ${data.userId}">${data.username}</li>  -->
+                </ul>
+            </div>
+            <div class="invite">
+                <button onclick="inviteOpen()" class="invite-btn" type="button">Invite  <i class="fa fa-share-alt"></i></buttonS>
+            </div>
+            <div class="invite-box">
+                <div class="invite-content">
+                    <span class="close">&times;</span>
+                    <h3>Invite people to join you</h3>
+                    <textarea class="invite-text" type="text" style="margin: 0px 0px 25px; height: 78px; width: 383px;">To join my meeting, visit https://ms-teams-clone-nikita.azurewebsites.net and use code: <%= roomId %></textarea>
+                    <button class="copy" type="button">Copy invite</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+<!-- External JS -->
+<script src="js/script.js" type="text/javascript"></script>
+
+</body>
+</html>

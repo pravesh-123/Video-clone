@@ -1,0 +1,89 @@
+<%- include ("layouts/header") -%>
+
+    <!-- CSS Stylesheets-->
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+    <div class="main-top">
+        <img src="imgs/logo.png">
+        <h3>Microsoft Teams</h3>
+    </div>
+
+    <div class="main-left">
+        <div class="container">
+            <div class="main-left-outer">
+                <div class="intro">
+                    <h1>Welcome to Teams meetings</h1>
+                    <p>Bring educators and students together with online meetings in Microsoft Teams. Get started by creating a new meeting or joining an existing one now.</p> 
+                    <button class="main-left-btn create-1" type="button">Create meeting</button>
+                    <span>&emsp;</span>
+                    <button class="main-left-btn join-1" type="button">Join meeting</button>
+                </div> 
+                
+                <div class="join">
+                    <h2>Join an existing Teams meeting</h2>
+                    <form>
+                        <label for="username">Username <span class="required">*</span></label> <br>
+                        <input type="text" name="username" id="username-1" required> <br>
+                        <label for="link">Meeting code <span class="required">*</span></label> <br>
+                        <input type="text" name="code" id="code-1" required> <br>
+                    </form>
+                    <a href="settings">
+                        <button class="main-left-btn join-2" type="button">Join now</button>
+                    </a>
+                    <p class="required-msg">* Please fill all the required fields.</p>
+                </div>
+
+                <div class="create">
+                    <h2>Create a new Teams meeting</h2>
+                    <form>
+                        <label for="username">Username <span class="required">*</span></label> <br>
+                        <input type="text" name="username" id="username-2" required> <br>
+                        <label for="title">Meeting Title <span class="required">*</span></label> <br>
+                        <input type="text" name="title" id="title" maxlength="20" required> <br>
+                    </form>
+                    <button class="main-left-btn create-2" type="button">Generate code</button>
+                    <p class="required-msg">* Please fill all the required fields.</p>
+                </div>
+
+                <div class="created">
+                    <h2>Meeting created</h2>
+                    <p>Share the code with your peers and ask them to join the video conference now!</p>
+                    <form>
+                        <label for="code">Meeting code-</label> <br>
+                        <input type="text" name="code" id="code-2" value="" readonly> <br>
+                    </form>
+                    <button class="main-left-btn copy" type="button">Copy code</button>
+                    <span>&emsp;</span> 
+                    <a href="settings">
+                        <button class="main-left-btn join-3" type="button">Join now</button>
+                    </a>
+                </div>
+                <!-- <input type="submit" value="Submit"> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="main-bottom">
+        <a class="back">
+            <i class="fas fa-chevron-left"></i>
+            <p>Back</p>
+        </a>
+    </div>
+    
+
+
+    <!-- Internal Javascript -->
+    <script>
+        let createNewCode= document.querySelector(".create-2");
+        createNewCode.addEventListener("click", () =>{
+            document.querySelector("#code-2").value= '<%-roomId%>';
+        });
+    </script>
+
+    <!-- External JS -->
+    <script src="js/home.js" type="text/javascript"></script>
+
+</body>
+</html>

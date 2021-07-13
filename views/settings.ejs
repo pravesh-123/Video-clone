@@ -1,0 +1,50 @@
+<%- include ("layouts/header") -%>
+
+    <!-- CSS Stylesheets-->
+    <link rel="stylesheet" href="css/settings.css">
+
+</head>
+<body>
+
+    <header class="settings-head">
+        <p>Check your audio and video settings before joining the meeting</p>
+        <h3 class="meet-title"></h3>
+    </header>
+
+    <div class="settings-check">
+        <div id="video-show">
+            <!--Video element gets added here-->
+            <!-- <video></video> -->
+        </div>
+        <div class="check-controls">
+            <div class="audio-check">
+                <div class="mic-button">
+                    <i class="fas fa-microphone"></i>
+                </div> 
+                <div class="check-btn" title="Turn microphone on/off">
+                    <input name="audio-checkbox" type="checkbox"  id="audio-checkbox" class="check-input" />
+                    <label onclick="muteUnmute()" for="audio-checkbox" class="check-label">Switch</label>
+                </div>
+            </div>
+            <div class="video-check">
+                <div class="video-button">
+                    <i class="fas fa-video"></i>
+                </div>  
+                <div class="check-btn" title="Switch video on/off">
+                    <input name="video-checkbox" type="checkbox" id="video-checkbox" class="check-input" />
+                    <label onclick="playStop()" for="video-checkbox" class="check-label">Switch</label>
+                </div>
+            </div> 
+        </div>         
+    </div>
+
+    <div class="settings-join">
+        <a ><button class="join-btn" type="button">Join now</button></a>
+    </div>
+
+
+    <!-- External JS -->
+    <script src="js/settings.js" type="text/javascript"></script>
+    <script src="js/controls.js" type="text/javascript"></script>
+</body>
+</html>

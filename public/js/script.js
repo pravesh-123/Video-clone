@@ -1,4 +1,4 @@
-const socket = io("/"); //importing socket.io
+const socket = io("/https://node-chat-video-app.herokuapp.com/"); //importing socket.io
 const myVideo = document.createElement("video"); //to create an HTML video element
 const videoBox = $("#video-box");
 const rightPane = $(".right-pane");
